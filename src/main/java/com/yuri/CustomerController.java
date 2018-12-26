@@ -1,16 +1,18 @@
 package com.yuri;
 
 import java.util.List;
+import java.util.Optional;
+
 import com.yuri.entity.Customer;
 import org.springframework.stereotype.Controller;
 import com.yuri.entity.repository.CustomerRepository;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -63,6 +65,27 @@ public class CustomerController {
 
 		if (customer != null) {
 			repository.delete(customer);
+		}
+
+		return customer;
+	}
+
+	@PutMapping("/{id}")
+	@ResponseBody
+	public Customer update( @PathVariable Long id,
+							@RequestParam Optional<String> name,
+							@RequestParam Optional<Integer> age) {
+
+		Customer customer = repository.findOne(id);
+
+		if (customer != null) {
+			if (name.isPresent()) {
+				customer.setName(name.get());
+			}
+			if (age.isPresent()) {
+				customer.setAge(age.get());
+			}
+			repository.save(customer);
 		}
 
 		return customer;
