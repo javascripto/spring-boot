@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
-public class Costumer {
+public class Customer {
 
 	@Id
 	@Column
@@ -20,11 +20,11 @@ public class Costumer {
 	@Column
 	private Integer age;
 	
-	public Costumer() {
+	public Customer() {
 		
 	}
 	
-	public Costumer(String name, Integer age) {
+	public Customer(String name, Integer age) {
 		this.name = name;
 		this.age = age;
 	}
@@ -33,7 +33,7 @@ public class Costumer {
 		return this.id;
 	}
 	
-	public Costumer setId(long id) {
+	public Customer setId(long id) {
 		this.id = id;
 		return this;
 	}
@@ -42,7 +42,7 @@ public class Costumer {
 		return this.name;
 	}
 	
-	public Costumer setName(String name) {
+	public Customer setName(String name) {
 		this.name = name;
 		return this;
 	}
@@ -51,7 +51,7 @@ public class Costumer {
 		return this.age;
 	}
 	
-	public Costumer setAge(Integer age) {
+	public Customer setAge(Integer age) {
 		this.age = age;
 		return this;
 	}
