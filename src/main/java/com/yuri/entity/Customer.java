@@ -20,9 +20,7 @@ public class Customer {
 	@Column
 	private Integer age;
 	
-	public Customer() {
-		
-	}
+	public Customer() {}
 	
 	public Customer(String name, Integer age) {
 		this.name = name;
