@@ -1,20 +1,18 @@
 package com.yuri;
 
+import java.util.List;
 import com.yuri.entity.Customer;
-
 import org.springframework.stereotype.Controller;
 import com.yuri.entity.repository.CustomerRepository;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Controller
@@ -55,6 +53,18 @@ public class CustomerController {
 			repository.save(customer);
 		}
 		
+		return customer;
+	}
+
+	@DeleteMapping("/{id}")
+	@ResponseBody
+	public Customer destroy(@PathVariable Long id) {
+		Customer customer = repository.findOne(id);
+
+		if (customer != null) {
+			repository.delete(customer);
+		}
+
 		return customer;
 	}
 }
